@@ -16,19 +16,16 @@ setxkbmap -option "ctrl:nocaps" &
 xcompmgr -n &
 
 # Start the system tray
-tray &
-
-# Start two terminals
-gnome-terminal &
-gnome-terminal &
-
-# Start a browser
-google-chrome &
+stalonetray --dockapp-mode simple &
 
 # Start screensaver
-gnome-screensaver &
+xscreensaver -no-splash &
+
+nm-applet &
 
 # Start sound server
 pulseaudio --start --log-target=syslog &
 
-gnome-session &
+LC_CTYPE=en_IN.utf8
+
+exec xmonad

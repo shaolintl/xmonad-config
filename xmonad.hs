@@ -26,10 +26,10 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal = "/usr/bin/gnome-terminal"
+myTerminal = "terminator"
 
 -- The command to lock the screen or show the screensaver.
-myScreensaver = "/usr/bin/gnome-screensaver-command --lock"
+myScreensaver = "xscreensaver-command --lock"
 
 -- The command to take a selective screenshot, where you select
 -- what you'd like to capture on the screen.
@@ -47,7 +47,7 @@ myLauncher = "$(yeganesh -x -- -fn '-*-terminus-*-r-normal-*-*-120-*-*-*-*-iso88
 -- Workspaces
 -- The default number of workspaces (virtual screens) and their names.
 --
-myWorkspaces = ["1:term","2:web","3:code","4:vm","5:media"] ++ map show [6..9]
+myWorkspaces = map show [1..9]
 
 
 ------------------------------------------------------------------------
@@ -65,16 +65,16 @@ myWorkspaces = ["1:term","2:web","3:code","4:vm","5:media"] ++ map show [6..9]
 -- 'className' and 'resource' are used below.
 --
 myManageHook = composeAll
-    [ className =? "Chromium"       --> doShift "2:web"
-    , className =? "Google-chrome"  --> doShift "2:web"
+    [ className =? "Chromium"       --> doShift "2"
+    , className =? "Google-chrome"  --> doShift "2"
     , resource  =? "desktop_window" --> doIgnore
     , className =? "Galculator"     --> doFloat
     , className =? "Steam"          --> doFloat
     , className =? "Gimp"           --> doFloat
     , resource  =? "gpicview"       --> doFloat
     , className =? "MPlayer"        --> doFloat
-    , className =? "VirtualBox"     --> doShift "4:vm"
-    , className =? "Xchat"          --> doShift "5:media"
+    , className =? "VirtualBox"     --> doShift "4"
+    , className =? "Xchat"          --> doShift "5"
     , className =? "stalonetray"    --> doIgnore
     , isFullscreen --> (doF W.focusDown <+> doFullFloat)]
 
@@ -134,7 +134,7 @@ myBorderWidth = 1
 -- ("right alt"), which does not conflict with emacs keybindings. The
 -- "windows key" is usually mod4Mask.
 --
-myModMask = mod1Mask
+myModMask = mod4Mask
 
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   ----------------------------------------------------------------------
@@ -142,8 +142,14 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   --
 
   -- Start a terminal.  Terminal to start is specified by myTerminal variable.
-  [ ((modMask .|. shiftMask, xK_Return),
+  [ ((modMask, xK_Return),
      spawn $ XMonad.terminal conf)
+
+  -- Apps
+  , ((modMask, xK_f),
+     spawn "firefox")
+  , ((modMask, xK_c),
+     spawn "chromium")
 
   -- Lock the screen using command specified by myScreensaver.
   , ((modMask .|. controlMask, xK_l),
@@ -239,7 +245,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
      windows W.focusMaster  )
 
   -- Swap the focused window and the master window.
-  , ((modMask, xK_Return),
+  , ((modMask .|. shiftMask, xK_Return),
      windows W.swapMaster)
 
   -- Swap the focused window with the next window.
@@ -340,9 +346,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 -- with mod-q.  Used by, e.g., XMonad.Layout.PerWorkspace to initialize
 -- per-workspace layout choices.
 --
--- By default, do nothing.
 myStartupHook = return ()
-
 
 ------------------------------------------------------------------------
 -- Run xmonad with all the defaults we set up.
