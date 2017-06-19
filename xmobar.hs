@@ -51,6 +51,6 @@ Config {
     ],
     sepChar = "%",
     alignSep = "}{",
-    template = "%battery% || %multicpu% || %coretemp% || %memory% || %swap% || %dynnetwork% || %StdinReader% }{ || %default:Master% || %date% ||    "
+    template = "%battery% || %multicpu% || %coretemp% || %memory% || %swap% || %dynnetwork% || %StdinReader% }{ || %default:Master% || %date% ||         "
     --template = "%StdinReader% }{ %multicpu%  %coretemp% %memory%   %swap%  %em1% |  <fc=#FFFFCC>%date%</fc>   | %battery% Volume: <fc=#b2b2ff>%volumelevel%</fc>"
 }

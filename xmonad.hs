@@ -42,6 +42,9 @@ myScreenshot = "screenshot"
 -- preset keybindings.
 myLauncher = "$(yeganesh -x -- -fn '-*-terminus-*-r-normal-*-*-120-*-*-*-*-iso8859-*' -nb '#000000' -nf '#FFFFFF' -sb '#7C7C7C' -sf '#CEFFAC')"
 
+-- choosing screens
+mySelectScreen = "/home/shaolin/.xprofile"
+
 
 ------------------------------------------------------------------------
 -- Workspaces
@@ -139,11 +142,14 @@ myModMask = mod4Mask
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   ----------------------------------------------------------------------
   -- Custom key bindings
-  --
 
   -- Start a terminal.  Terminal to start is specified by myTerminal variable.
   [ ((modMask, xK_Return),
      spawn $ XMonad.terminal conf)
+
+  -- change screns
+  , ((shiftMask, xK_F4),
+     spawn mySelectScreen)
 
   -- Apps
   , ((modMask, xK_f),
