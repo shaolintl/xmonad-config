@@ -368,6 +368,9 @@ main = do
       }
       , manageHook = manageDocks <+> myManageHook
       , startupHook = setWMName "LG3D"
+      , handleEventHook = mconcat
+          [ docksEventHook
+          , handleEventHook defaultConfig ]
   }
 
 

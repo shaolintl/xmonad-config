@@ -1,3 +1,10 @@
+[user]
+	email = shaolintl@gmail.com
+	name = Tomer
+[core]
+	autocrlf = input
+	safecrlf = true
+
 [alias]
   co = checkout
   ci = commit
