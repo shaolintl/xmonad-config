@@ -22,6 +22,7 @@ stalonetray --dockapp-mode simple &
 xscreensaver -no-splash &
 
 nm-applet &
+twmnd &
 
 # Start sound server
 pulseaudio --start --log-target=syslog &

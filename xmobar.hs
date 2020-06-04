@@ -11,6 +11,8 @@ Config {
     border =       BottomB,
     borderColor =  "#646464",
     lowerOnStart = True,
+    overrideRedirect = True,
+    pickBroadest =     False,
     commands = [
         Run Weather "LFPG" ["-t","<tempF>F <skyCondition>","-L","64","-H","77","-n","#CEFFAC","-h","#FFB6B0","-l","#96CBFE"] 36000,
         Run MultiCpu ["-t","Cpu: <total0>%|<total1>%|<total2>%|<total3>%","-L","50","-H","85","-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC","-w","3"] 10,

@@ -36,3 +36,10 @@ alias gx='gitx --all'
 
 alias got='git '
 alias get='git '
+GRADLE_HOME=~/gradle-4.5-rc-1
+PATH=$GRADLE_HOME/bin:$PATH
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

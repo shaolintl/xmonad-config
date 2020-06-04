@@ -1,8 +1,9 @@
 [user]
 	email = shaolintl@gmail.com
-	name = Tomer
+	name = Tomer Libal
+	username = shaolintl@gmail.com
 [core]
-	autocrlf = input
+	autocrlf = false
 	safecrlf = true
 
 [alias]
@@ -13,3 +14,9 @@
   hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
   type = cat-file -t
   dump = cat-file -p
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[credential]
+	helper = cache

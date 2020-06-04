@@ -33,7 +33,7 @@ myScreensaver = "xscreensaver-command --lock"
 
 -- The command to take a selective screenshot, where you select
 -- what you'd like to capture on the screen.
-mySelectScreenshot = "select-screenshot"
+mySelectScreenshot = "screenshot_select"
 
 -- The command to take a fullscreen screenshot.
 myScreenshot = "screenshot"
@@ -93,11 +93,6 @@ myManageHook = composeAll
 -- which denotes layout choice.
 --
 myLayout = avoidStruts (
-    ThreeColMid 1 (3/100) (1/2) |||
-    Tall 1 (3/100) (1/2) |||
-    Mirror (Tall 1 (3/100) (1/2)) |||
-    tabbed shrinkText tabConfig |||
-    Full |||
     spiral (6/7)) |||
     noBorders (fullscreenFull Full)
 
@@ -146,6 +141,14 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- Start a terminal.  Terminal to start is specified by myTerminal variable.
   [ ((modMask, xK_Return),
      spawn $ XMonad.terminal conf)
+
+  -- brightness
+  , ((0, 0x1008ff03),
+     spawn "/home/shaolin/usr/scripts/brightness.sh -10")
+
+  -- brightness
+  , ((0, 0x1008ff02),
+     spawn "/home/shaolin/usr/scripts/brightness.sh +10")
 
   -- change screns
   , ((shiftMask, xK_F4),
@@ -366,6 +369,7 @@ main = do
           , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
           , ppSep = "   "
       }
+      , layoutHook = avoidStruts  $  layoutHook defaultConfig
       , manageHook = manageDocks <+> myManageHook
       , startupHook = setWMName "LG3D"
       , handleEventHook = mconcat
